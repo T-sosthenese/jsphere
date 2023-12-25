@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'users',
     'widget_tweaks',
     'resume',
-    'company'
+    'company',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
