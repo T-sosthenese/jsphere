@@ -20,13 +20,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if request.user.is_authenticated %}
+                {% if request.user.is_applicant %}
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
+                    {% if not request.user.has_resume %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="{% url 'update-resume' %}">Create Resume</a>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Apply Jobs</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,11 +53,53 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
+                {% elif request.user.is_recruiter %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    {% if request.user.has_company %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Create jobs</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'update-company' %}">Create Company</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" heref="#">Action</a></li>
+                            <li><a class="dropdown-item" heref="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" heref="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                {% endif %}
+                {% endif %}
                 <a href="{% url 'logout' %}" class="btn btn-primary me-2">Logout</a>
             </div>
         </div>
     </nav>
     <div class="container mt-5">
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{message.tags}}" role="alert">
+            <b>{{message}}</b>
+          </div>
+          {% endfor %}
+        {% endif %}
+
         {% block content %}
     
         {% endblock content %}
