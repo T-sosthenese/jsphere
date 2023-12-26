@@ -6,23 +6,27 @@ from .forms import UpdateResumeForm
 
 
 def update_resume(request):
-    resume = Resume.objects.get(user=request.user)
-    if request.method == 'POST':
-        form = UpdateResumeForm(request.POST, instance=resume)
-        if form.is_valid():
-            var = form.save(commit=False)
-            user = User.objects.get(pk=request.user.id)
-            user.has_resume = True
-            user.save()
-            var.save()
-            messages.info(request, 'Your resume info has been updated.')
-            return redirect('dashboard')
+    if request.user.is_applicant:
+        resume = Resume.objects.get(user=request.user)
+        if request.method == 'POST':
+            form = UpdateResumeForm(request.POST, instance=resume)
+            if form.is_valid():
+                var = form.save(commit=False)
+                user = User.objects.get(pk=request.user.id)
+                user.has_resume = True
+                user.save()
+                var.save()
+                messages.info(request, 'Your resume info has been updated.')
+                return redirect('dashboard')
+            else:
+                messages.warning(request, 'Something went wrong.')
         else:
-            messages.warning(request, 'Something went wrong.')
+            form = UpdateResumeForm(instance=resume)
+            context = {'form':form}
+            return render(request, 'resume/update_resume.html', context)
     else:
-        form = UpdateResumeForm(instance=resume)
-        context = {'form':form}
-        return render(request, 'resume/update_resume.html', context)
+        messages.warning(request, 'Permission denied')
+        return redirect('dashboard')
 
 def resume_details(request, pk):
     resume = Resume.objects.get(pk=pk)
