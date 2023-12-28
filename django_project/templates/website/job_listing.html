@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
   <section>
     <div class="p-3 mb-2 bg-light rounded-3"> <!-- Reduced padding to p-3 and margin to mb-2 -->
@@ -25,7 +27,7 @@
                 </p>
               </div>
               <div class="card-footer">
-                <small class="text-muted">Created at {{job.timestamp}}</small>
+                <small class="text-muted">Created at {{job.timestamp|naturaltime}}</small>
               </div>
             </div>
           </div>
