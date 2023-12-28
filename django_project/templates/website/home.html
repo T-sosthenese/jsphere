@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section>
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h2 class="display-5 fw-bold">jsphere jobs. Find your match today</h2><br>
+
+        <div class="card">
+          <div class="card-body">
+            <form class="row g-3 align-items-center">
+              <div class="col-md-2">
+                <label class="visually-hidden" for="autoSizingInput">Name</label>
+                <input type="text" class="form-control" id="autoSizingInput" placeholder="Job Keyword">
+              </div>
+              <div class="col-md-3">
+                <label class="visually-hidden" for="autoSizingSelectLocation">Select Location</label>
+                <select class="form-select" id="autoSizingSelectLocation">
+                  <option selected>Select location</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="visually-hidden" for="autoSizingSelectJobType">Choose job type</label>
+                <select class="form-select" id="autoSizingSelectJobType">
+                  <option selected>Choose job type</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="visually-hidden" for="autoSizingSelectIndustry">Select industry</label>
+                <select class="form-select" id="autoSizingSelectIndustry">
+                  <option selected>Select industry</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col-md-1">
+                <button type="submit" class="btn btn-primary">Search</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <p class="col-md-8 fs-6 mt-3">
+          Welcome to jsphere job portal. Search and get your dream job. We have several job opportunities for you. Don't forget to give feedback when you get connected with an employer. Good luck with your hunt.
+        </p>
+        <button class="btn btn-outline-primary" type="button">More jobs</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Card title 1</h5>
+          <p class="card-text">This card has supported text below as a natural lead-in to additional content.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 minutes ago.</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Card title 2</h5>
+          <p class="card-text">This card supports natural lead-in text.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 minutes ago.</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Card title 3</h5>
+          <p class="card-text">This is the third card with additional content.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 minutes ago.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-md-10 mx-auto col-lg-2 mt-4">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+{% endblock content %}
