@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section>
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h2 class="display-5 fw-bold">jsphere jobs. Get hired quickly</h2>
+        <p class="col-md-8 fs-5 mt-3">
+          All available jobs
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% if jobs %}
+    {% for job in jobs %}
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{job.title}}</h5>
+          <p class="card-text">
+            {{job.requirements}}
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 minutes ago.</small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+{% endblock content %}
