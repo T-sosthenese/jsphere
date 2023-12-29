@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Job
+from .models import Job, ApplyJob
 from .forms import CreateJobForm, UpdateJobForm
 
 
@@ -47,3 +47,17 @@ def manage_jobs(request):
     jobs = Job.objects.filter(user=request.user, company=request.user.company)
     context = {'jobs':jobs}
     return render(request, 'job/manage_jobs.html', context)
+
+def apply_to_job(request, pk):
+    if request.user.is_authenticated:
+        job = Job.objects.get(pk=pk)
+        ApplyJob.objects.create(
+            job=job,
+            user=request.user,
+            status='Pending',
+        )
+        messages.info(request, 'Your application has been received! Proceed to the dashboard')
+        return redirect('dashboard')
+    else:
+        messages.info(request, 'Please login to continue')
+        return redirect('login')

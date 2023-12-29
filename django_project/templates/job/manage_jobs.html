@@ -1,39 +1,39 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
 
 <div class="card mx-auto">
     <div class="card-body">
-        <h5 class="card-title mb-3">Applicants for senior software engineer position</h5>
+        <h5 class="card-title mb-3">Manage Jobs</h5>
 
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Experience (in years)</th>
+                    <th scope="col">Job title</th>
                     <th scope="col">Location</th>
+                    <th scope="col">Salary ($)</th>
+                    <th scope="col">No. of applicants</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Download Resume</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
+                {% for job in jobs %}
                 <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>5</td>
-                    <td>Nairobi, Kenya</td>
-                    <td><span class="badge bg-warning">Pending</span></td>
-                    <td><a href="#"><small>Resume</small></a></td>
+                    <td>{{job.title}}</td>
+                    <td>{{job.location}}</td>
+                    <td>{{job.salary|intcomma}}</td>
+                    <td>{{job.applyjob_set.all.count}}</td>
+                    {% if job.is_available %}
+                    <td><span class="badge bg-success">Active</span></td>
+                    {% else %}
+                    <td><span class="badge bg-warning">Not available</span></td>
+                    {% endif %}
+                    <td><a href="#"><small>Update Job</small></a></td>
                 </tr>
-                <tr>
-                    <td>Sosthene</td>
-                    <td>Timi</td>
-                    <td>2</td>
-                    <td>Nairobi, Kenya</td>
-                    <td><span class="badge bg-warning">Under review</span></td>
-                    <td><a href="#"><small>Resume</small></a></td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
