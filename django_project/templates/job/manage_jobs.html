@@ -25,7 +25,7 @@
                     <td>{{job.title}}</td>
                     <td>{{job.location}}</td>
                     <td>{{job.salary|intcomma}}</td>
-                    <td>{{job.applyjob_set.all.count}}</td>
+                    <td>{{job.applyjob_set.all.count}}<a href="{% url 'all-applicants' job.pk %}"><br>View all</a></td>
                     {% if job.is_available %}
                     <td><span class="badge bg-success">Active</span></td>
                     {% else %}

@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from job.models import Job, ApplyJob
+from django.contrib.auth import logout
 
 def home(request):
+    if request.user.is_authenticated:
+        logout(request)
     return render(request, 'website/home.html')
 
 def job_listing(request):
-    jobs = Job.objects.filter(is_available=True)
+    jobs = Job.objects.filter(is_available=True).order_by('-timestamp')
     context = {'jobs':jobs}
     return render(request, 'website/job_listing.html', context)
 

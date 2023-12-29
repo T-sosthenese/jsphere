@@ -49,15 +49,26 @@ def manage_jobs(request):
     return render(request, 'job/manage_jobs.html', context)
 
 def apply_to_job(request, pk):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.user.is_applicant:
         job = Job.objects.get(pk=pk)
-        ApplyJob.objects.create(
-            job=job,
-            user=request.user,
-            status='Pending',
-        )
-        messages.info(request, 'Your application has been received! Proceed to the dashboard')
-        return redirect('dashboard')
+        if ApplyJob.objects.filter(user=request.user, job=pk).exists():
+            messages.warning(request, 'Permission denied')
+            return redirect('dashboard')
+        else:
+            ApplyJob.objects.create(
+                job=job,
+                user=request.user,
+                status='Pending',
+            )
+            messages.info(request, 'Your application has been received! Proceed to the dashboard')
+            return redirect('dashboard')
     else:
-        messages.info(request, 'Please login to continue')
+        messages.info(request, 'Please login as an applicant to continue')
         return redirect('login')
+
+
+def all_applicants(request, pk):
+    job = Job.objects.get(pk=pk)
+    applicants = job.applyjob_set.all()
+    context = {'job':job, 'applicants':applicants}
+    return render(request, 'job/all_applicants.html', context)
