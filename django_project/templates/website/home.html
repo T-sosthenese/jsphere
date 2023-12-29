@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+{% load widget_tweaks %}
+
 {% block content %}
   <section>
     <div class="p-3 mb-2 bg-light rounded-3">
@@ -8,37 +11,22 @@
 
         <div class="card">
           <div class="card-body">
-            <form class="row g-3 align-items-center">
+            <form class="row g-3 align-items-center" method="GET">
               <div class="col-md-2">
-                <label class="visually-hidden" for="autoSizingInput">Name</label>
-                <input type="text" class="form-control" id="autoSizingInput" placeholder="Job Keyword">
+                <label for="autoSizingInput">Name</label>
+                {% render_field filter.form.title class="form-control" id="autoSizingInput" placeholder="Job Keyword" %}
               </div>
               <div class="col-md-3">
-                <label class="visually-hidden" for="autoSizingSelectLocation">Select Location</label>
-                <select class="form-select" id="autoSizingSelectLocation">
-                  <option selected>Select location</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
+                <label for="autoSizingSelectLocation">Select Location</label>
+                {% render_field filter.form.state class="form-select" %}
               </div>
               <div class="col-md-3">
-                <label class="visually-hidden" for="autoSizingSelectJobType">Choose job type</label>
-                <select class="form-select" id="autoSizingSelectJobType">
-                  <option selected>Choose job type</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
+                <label for="autoSizingSelectJobType">Choose job type</label>
+                {% render_field filter.form.job_type class="form-select" %}
               </div>
               <div class="col-md-3">
-                <label class="visually-hidden" for="autoSizingSelectIndustry">Select industry</label>
-                <select class="form-select" id="autoSizingSelectIndustry">
-                  <option selected>Select industry</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
+                <label for="autoSizingSelectIndustry">Select industry</label>
+                {% render_field filter.form.industry class="form-select" %}
               </div>
               <div class="col-md-1">
                 <button type="submit" class="btn btn-primary">Search</button>
@@ -56,58 +44,21 @@
   </section>
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for job in filter.qs %}
     <div class="col">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title">Card title 1</h5>
-          <p class="card-text">This card has supported text below as a natural lead-in to additional content.</p>
+          <h5 class="card-title">{{job.title}}</h5>
+          <p class="card-text">Industry: {{job.industry}}</p>
+          <p class="card-text">Job type: {{job.job_type}}</p>
+          <p class="card-text">Location: {{job.city}}, {{job.state}}</p>
+          <p class="card-text">Salary: {{job.salary|intcomma}}</p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated 3 minutes ago.</small>
+          <small class="text-muted">Updated {{job.timestamp|naturaltime}}</small>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Card title 2</h5>
-          <p class="card-text">This card supports natural lead-in text.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 minutes ago.</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Card title 3</h5>
-          <p class="card-text">This is the third card with additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 minutes ago.</small>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
-
-  <div class="row align-items-center">
-    <div class="col-md-10 mx-auto col-lg-2 mt-4">
-      <nav aria-label="...">
-        <ul class="pagination">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-
 {% endblock content %}
