@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+<section class="p-1 mb-1 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h2 class="display-5 fw-bold">{{ job.title }}</h2>
+        <p class="col-md-8 fs-5 mt-3">{{ job.location }} | Remote | ${{ job.salary|intcomma }}</p>
+        <button class="btn btn-primary btn-lg" type="button">Apply now</button>
+    </div>
+</section>
+
+<section>
+    <h5>Job requirements</h5>
+    <p>{{ job.requirements }}</p>
+</section>
+
+<section>
+    <h5>Ideal candidate</h5>
+    <p>{{ job.ideal_candidate }}</p>
+</section>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Other details</h5>
+                <p class="card-text">This is a wide card.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated {{job.timestamp|naturaltime}}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">About the company</h5>
+                <p class="card-text">Name: {{job.company.name}}</p>
+                <p class="card-text">City: {{job.company.city}}</p>
+                <p class="card-text">Established: {{job.company.est_date}}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated {{job.timestamp|naturaltime}}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Related jobs</h5>
+                <p class="card-text">State: {{job.company.state}}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated {{job.timestamp|naturaltime}}</small>
+            </div>
+        </div>
+    </div>
+</div> <br>
+
+{% endblock content %}

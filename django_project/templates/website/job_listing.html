@@ -23,8 +23,15 @@
               <div class="card-body">
                 <h5 class="card-title">{{job.title}}</h5>
                 <p class="card-text">
-                  {{job.requirements}}
+                  Job location: {{job.location}}
                 </p>
+                <p class="card-text">
+                  Posted by: {{job.company}}
+                </p>
+                <p class="card-text">
+                  Salary: ${{job.salary|intcomma}}
+                </p>
+                <a class="btn btn-primary btn-sm" href="{% url 'job-details' job.pk %}">View details</a>
               </div>
               <div class="card-footer">
                 <small class="text-muted">Created at {{job.timestamp|naturaltime}}</small>

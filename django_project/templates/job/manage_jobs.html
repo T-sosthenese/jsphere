@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card mx-auto">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Applicants for senior software engineer position</h5>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Experience (in years)</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Download Resume</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>5</td>
+                    <td>Nairobi, Kenya</td>
+                    <td><span class="badge bg-warning">Pending</span></td>
+                    <td><a href="#"><small>Resume</small></a></td>
+                </tr>
+                <tr>
+                    <td>Sosthene</td>
+                    <td>Timi</td>
+                    <td>2</td>
+                    <td>Nairobi, Kenya</td>
+                    <td><span class="badge bg-warning">Under review</span></td>
+                    <td><a href="#"><small>Resume</small></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

@@ -15,7 +15,8 @@
     <br><br>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
     <hr class="my-4">
-    <small class="text-muted">Don't have an account?<a href="#">Signup</a></small>
+    <small class="text-muted">Register as an applicant<a href="{% url 'register-applicant' %}">Signup</a></small><br>
+    <small class="text-muted">Register as a recruiter<a href="{% url 'register-recruiter' %}">Signup</a></small>
 </form>
 
 {% endblock content %}
