@@ -6,7 +6,7 @@
 <section class="p-1 mb-1 bg-light rounded-3">
     <div class="container-fluid py-5">
         <h2 class="display-5 fw-bold">{{ job.title }}</h2>
-        <p class="col-md-8 fs-5 mt-3">{{ job.location }} | Remote | ${{ job.salary|intcomma }}</p>
+        <p class="col-md-8 fs-5 mt-3">{{ job.state }} | {{job.job_type}} | ${{ job.salary|intcomma }}</p>
         {% if has_applied == False %}
         <a href="{% url 'apply-to-job' job.pk %}" class="btn btn-primary btn-lg">Apply now</a>
         {% else %}
