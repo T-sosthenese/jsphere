@@ -3,6 +3,8 @@
 ## Introduction
 
 Welcome to jsphere, a dynamic Django web application designed as a job portal where recruiters and applicants can interact seamlessly. This platform is tailored for job seekers to find their desired roles and for recruiters to discover talented candidates efficiently.
+![image](https://github.com/T-sosthenese/jsphere/assets/122860182/201acbce-d36d-494d-bbef-1c239e15baf8)
+
 
 ## Features
 
