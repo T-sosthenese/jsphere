@@ -64,7 +64,7 @@ This project is available for general public use. You can clone it and make any 
 
 ## Contact
 
-For more information or queries, please contact Sosthene Timi at [Your Email].
+For more information or queries, please contact Sosthene Timi at sosthenetimi94@gmail.com.
 
 ---
 
