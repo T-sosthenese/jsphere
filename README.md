@@ -13,6 +13,10 @@ Welcome to jsphere, a dynamic Django web application designed as a job portal wh
 - **Applicant Features**:
   - Fill in a resume form and upload a CV.
   - Apply to jobs with a limitation of one application per job.
+
+**Applicant's dashboard
+![image](https://github.com/T-sosthenese/jsphere/assets/122860182/9de103fc-2d7b-4509-a2c7-56946a6b1d3c)
+
 - **Recruiter Features**:
   - Create company profiles.
   - List job openings.
